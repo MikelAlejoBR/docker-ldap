@@ -1,0 +1,18 @@
+version: "3.3"
+
+services:
+
+  ldap:
+    build:
+      args:
+        - DOMAIN=${DOMAIN}
+        - ORGANIZATION=${ORGANIZATION}
+        - ROOT_PASSWORD=${ROOT_PASSWORD}
+        - ROOT_PASSWORD_HASHED=${ROOT_PASSWORD_HASHED}
+        - ROOT_USER=${ROOT_USER}
+        - SUFFIX=${SUFFIX}
+      context: ldap/
+      dockerfile: Dockerfile
+    ports:
+      - 389:389
+    tty: true

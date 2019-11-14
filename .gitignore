@@ -1,0 +1,5 @@
+# .env file containing the secrets
+.env
+
+# LDAP import data
+ldap/data/

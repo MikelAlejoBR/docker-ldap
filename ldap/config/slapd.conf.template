@@ -1,0 +1,21 @@
+include /etc/ldap/schema/core.schema
+include /etc/ldap/schema/cosine.schema
+include /etc/ldap/schema/inetorgperson.schema
+include /etc/ldap/schema/nis.schema
+
+moduleload    back_mdb
+database      mdb
+suffix        "${SUFFIX}"
+rootdn        "${ROOT_USER},${SUFFIX}"
+rootpw        ${ROOT_PASSWORD_HASHED}
+
+access to *
+    by self write
+    by users read
+    by anonymous auth
+
+index objectClass                       eq,pres
+index ou,cn,mail,surname,givenname      eq,pres,sub
+index uidNumber,gidNumber,loginShell    eq,pres
+index uid,memberUid                     eq,pres,sub
+index nisMapName,nisMapEntry            eq,pres,sub
